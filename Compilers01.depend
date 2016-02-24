@@ -1,7 +1,12 @@
 # depslib dependency file v1.0
-1456345778 source:f:\dropbox\code\github\c++\compilers01\main.cpp
+1456346064 source:f:\dropbox\code\github\c++\compilers01\main.cpp
 	<iostream>
 	"Lexer.h"
 
-1456345778 f:\dropbox\code\github\c++\compilers01\lexer.h
+1456346064 f:\dropbox\code\github\c++\compilers01\lexer.h
+
+1456346064 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+	<iostream>
+	<fstream>
+	"Lexer.h"
 
