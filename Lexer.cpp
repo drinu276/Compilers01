@@ -27,8 +27,33 @@ void Token(TOK_TYPE type, string tokenName, int tokenID) {
 
 }
 
+string removeComments(string in) {
+    char first = 0, lookahead = 0;
+    int i = 0, strLen = 0, skip = 0;
+    string out;
+
+    strLen = in.length();
+
+    while (i < strLen) {
+        first = in[i];
+        lookahead = in[i+1];
+
+        if (first == '/' && lookahead == '/') {
+            skip = 1;
+        } else if (first == '\n') {
+            skip = 0;
+        }
+
+        if (!skip) {
+            out = out+first;
+        }
+        i++;
+    }
+return out;
+}
+
 Lexer::Lexer(string fileName) {
-    string fileIn = "", fileInLine = "";
+    string fileIn = "", fileInLine = "", fileInString = "";
 
     ifstream myfile;
     myfile.open (fileName.c_str(), ios::in);
@@ -36,9 +61,11 @@ Lexer::Lexer(string fileName) {
     if (myfile.is_open()) {
         while(getline(myfile,fileInLine)) {
             fileIn = fileIn + fileInLine;
+            fileIn = fileIn + '\n';
         }
     }
-    cout << fileIn << endl;
+    cout << removeComments(fileIn) << endl;
+
     myfile.close();
 
 }
