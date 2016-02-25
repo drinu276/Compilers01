@@ -29,7 +29,7 @@ void Token(TOK_TYPE type, string tokenName, int tokenID) {
 
 string removeComments(string in) {
     char first = 0, lookahead = 0;
-    int i = 0, strLen = 0, skip = 0;
+    int i = 0, strLen = 0, skip = 0, changed = 1;
     string out;
 
     strLen = in.length();
@@ -47,12 +47,6 @@ string removeComments(string in) {
         if (!skip) {
             out = out+first;
         }
-        i++;
-    }
-    i = 0;
-    while (i < strLen-1) {
-        first = in[i];
-        lookahead = in[i+1];
         i++;
     }
 return out;
