@@ -34,7 +34,7 @@ string removeComments(string in) {
 
     strLen = in.length();
 
-    while (i < strLen) {
+    while (i < strLen-1) {
         first = in[i];
         lookahead = in[i+1];
 
@@ -47,6 +47,12 @@ string removeComments(string in) {
         if (!skip) {
             out = out+first;
         }
+        i++;
+    }
+    i = 0;
+    while (i < strLen-1) {
+        first = in[i];
+        lookahead = in[i+1];
         i++;
     }
 return out;
