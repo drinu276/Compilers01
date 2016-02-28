@@ -27,6 +27,27 @@ void Token(TOK_TYPE type, string tokenName, int tokenID) {
 
 }
 
+bool isNumericOperator (char in) {
+    if (in == '+' || in == '-' || in == '*' ||in == '/')
+        return true;
+    else
+        return false;
+}
+
+bool isLetter(char in) {
+    if ((in >= 'a' && in <= 'z') || (in >= 'A' && in <= 'Z'))
+        return true;
+    else
+        return false;
+}
+
+bool isNumber(char in) {
+    if (in >= '0' && in <= '9')
+        return true;
+    else
+        return false;
+}
+
 string removeComments(string in) {
     char first = 0, lookahead = 0;
     int i = 0, strLen = 0, skip = 0, changed = 1;
@@ -65,7 +86,6 @@ Lexer::Lexer(string fileName) {
         }
     }
     cout << removeComments(fileIn) << endl;
-
     myfile.close();
 
 }
