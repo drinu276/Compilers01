@@ -19,12 +19,13 @@ struct Token {
     int id;
 };
 
-void Token() {
 
-}
-
-void Token(TOK_TYPE type, string tokenName, int tokenID) {
-
+Token getToken(TOK_TYPE type, string tokenName, int tokenID) {
+    Token newToken;
+    newToken.TokenType = type;
+    newToken.name = tokenName;
+    newToken.id = tokenID;
+    return newToken;
 }
 
 bool isNumericOperator (char in) {
