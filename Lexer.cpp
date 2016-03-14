@@ -4,6 +4,8 @@
 
 using namespace std;
 
+char curr, peek;
+
 enum TOK_TYPE {
     TOK_NUMBER,
     TOK_ARITHMETIC_OP,
