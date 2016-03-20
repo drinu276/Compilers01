@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <queue>
 #include "Lexer.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ struct Token
     TOK_TYPE TokenType;
     string name;
     int id;
-};
+} newToken;
 
 void Token()
 {
@@ -79,7 +80,7 @@ string removeComments(string in)
             skip = 0;
         }
 
-        if (!skip)
+        if (!skip && lookahead != '/')
         {
             out = out+first;
         }
@@ -90,18 +91,28 @@ string removeComments(string in)
 
 void tokeniser(string in)
 {
+    queue <int> tokenList;
+
+
     int i=0,size = in.length();
     while (i < size)
     {
         curr = in[i];
-        cout << "curr:" << curr << " i:" << i << endl;
         i++;
+        tokenList.push(i);
+    }
+
+
+    cout<< "token list contains:" << endl;
+    while (!tokenList.empty()) {
+        std::cout << ' ' << tokenList.front(); //note: accesses first element... apparently
+        tokenList.pop(); //note: removes first element...
     }
 }
 
 Lexer::Lexer(string fileName)
 {
-    string fileIn = "", fileInLine = "", fileInString = "";
+    string fileIn = "", fileInLine = "";
 
     ifstream myfile;
     myfile.open (fileName.c_str(), ios::in);
@@ -114,9 +125,10 @@ Lexer::Lexer(string fileName)
             fileIn = fileIn + '\n';
         }
     }
-    cout << removeComments(fileIn) << endl;
-    cout << "---" << endl;
-    tokeniser(removeComments(fileIn));
+
+    fileIn = removeComments(fileIn);
+    cout << fileIn << endl;
+    tokeniser(fileIn);
     myfile.close();
 
 }

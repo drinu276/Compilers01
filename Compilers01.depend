@@ -3,21 +3,33 @@
 	<iostream>
 	"Lexer.h"
 
-1457434368 f:\dropbox\code\github\c++\compilers01\lexer.h
+1458482529 f:\dropbox\code\github\c++\compilers01\lexer.h
 
-1456655267 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+1458483736 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	"Lexer.h"
+
+1458041668 source:c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.cpp
 	<iostream>
 	<fstream>
 	"Lexer.h"
 
-1457341590 source:c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.cpp
-	<iostream>
-	<fstream>
-	"Lexer.h"
-
-1457434368 c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.h
+1458040067 c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.h
 
 1456655131 source:c:\users\andrea\dropbox\code\github\c++\compilers01\main.cpp
 	<iostream>
+	"Lexer.h"
+
+1456728706 source:d:\tools\workspace\cpp\compilers01\main.cpp
+	<iostream>
+	"Lexer.h"
+
+1456728706 d:\tools\workspace\cpp\compilers01\lexer.h
+
+1456728921 source:d:\tools\workspace\cpp\compilers01\lexer.cpp
+	<iostream>
+	<fstream>
 	"Lexer.h"
 
