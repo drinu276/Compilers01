@@ -7,32 +7,39 @@ using namespace std;
 
 char curr, peek;
 
-enum TOK_TYPE
+class Token
 {
-    TOK_NUMBER,
-    TOK_ARITHMETIC_OP,
-    TOK_WHITESPACE,
-    TOK_COMMENT,
-    TOK_UNDEFINED,
-    TOK_EOF
+public:
+    enum TOK_TYPE
+    {
+        TOK_NUMBER,
+        TOK_ARITHMETIC_OP,
+        TOK_WHITESPACE,
+        TOK_COMMENT,
+        TOK_UNDEFINED,
+        TOK_EOF
+    };
+
+    TOK_TYPE TokenType;
+    string name;
+    int id;
+
+
 };
 
-struct Token
+
+
+/*struct Token
 {
     TOK_TYPE TokenType;
     string name;
     int id;
 } newToken;
 
-void Token()
-{
-
-}
-
 void Token(TOK_TYPE type, string tokenName, int tokenID)
 {
 
-}
+} */
 
 bool isNumericOperator (char in)
 {
@@ -91,21 +98,23 @@ string removeComments(string in)
 
 void tokeniser(string in)
 {
-    queue <int> tokenList;
+    queue <Token> tokenList;
+    Token newToken;
 
-
-    int i=0,size = in.length();
+    int i = 0, size = in.length();
     while (i < size)
     {
+        newToken.name = in[i];
         curr = in[i];
         i++;
-        tokenList.push(i);
+        tokenList.push(newToken);
     }
 
 
     cout<< "token list contains:" << endl;
-    while (!tokenList.empty()) {
-        std::cout << ' ' << tokenList.front(); //note: accesses first element... apparently
+    while (!tokenList.empty())
+    {
+        std::cout << "" << tokenList.front().name; //note: accesses first element... apparently
         tokenList.pop(); //note: removes first element...
     }
 }
