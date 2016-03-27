@@ -17,10 +17,9 @@ public:
         std::string name;
         int id;
     };
-    //isNumericOperator(char in);
-    //isLetter(char in);
-    //isNumber(char in);
-    //removeComments(std::string in);
-    //removeSpaces(std::string in);
+    bool isArithmeticOperator(char in);
+    bool isLetter(char in);
+    bool isNumber(char in);
+    //std::string removeComments(std::string in);
     Lexer(std::string fileName);
 };

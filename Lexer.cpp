@@ -7,6 +7,7 @@
 using namespace std;
 
 char curr, peek;
+static int id = 0;
 
 class Token
 {
@@ -43,16 +44,25 @@ void Token(TOK_TYPE type, string tokenName, int tokenID)
 } */
 
 enum TOK_TYPE
-    {
-        TOK_NUMBER,
-        TOK_ARITHMETIC_OP,
-        TOK_WHITESPACE,
-        TOK_COMMENT,
-        TOK_UNDEFINED,
-        TOK_EOF
-    };
+{
+    TOK_NUMBER,
+    TOK_ARITHMETIC_OP,
+    TOK_WHITESPACE,
+    TOK_COMMENT,
+    TOK_UNDEFINED,
+    TOK_EQUALS,
+    TOK_EOF
+};
 
-bool isNumericOperator (char in)
+bool isEquals (char in)
+{
+    if (in == '=')
+        return true;
+    else
+        return false;
+}
+
+bool isArithmeticOperator (char in)
 {
     if (in == '+' || in == '-' || in == '*' ||in == '/')
         return true;
@@ -126,16 +136,42 @@ void tokeniser(string in)
                 i++;
                 curr = in[i];
             }
-        newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_NUMBER);
-        newToken.contents = buf;
-        tokenList.push(newToken);
-        buf = "";
-        } else {
+            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_NUMBER);
+            newToken.contents = buf;
+            newToken.id = id;
+            tokenList.push(newToken);
+            buf = "";
+            id++;
+        }
+        else if (isArithmeticOperator(curr))     //can detect single character operations only for now
+        {
+            buf += curr;
+
+            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_ARITHMETIC_OP);
+            newToken.contents = buf;
+            newToken.id = id;
+            tokenList.push(newToken);
+            buf = "";
+            id++;
+            i++;
+        }
+        else if (isEquals(curr))       //can detect single equals only for now
+        {
+            buf += curr;
+
+            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_EQUALS);
+            newToken.contents = buf;
+            newToken.id = id;
+            tokenList.push(newToken);
+            buf = "";
+            id++;
+            i++;
+        }
+        else
+        {
             i++;
         }
     }
-
-    tokenList.push(newToken);
     cout<< "token list contains:" << endl;
     while (!tokenList.empty())
     {
