@@ -41,6 +41,16 @@ void Token(TOK_TYPE type, string tokenName, int tokenID)
 
 } */
 
+enum TOK_TYPE
+    {
+        TOK_NUMBER,
+        TOK_ARITHMETIC_OP,
+        TOK_WHITESPACE,
+        TOK_COMMENT,
+        TOK_UNDEFINED,
+        TOK_EOF
+    };
+
 bool isNumericOperator (char in)
 {
     if (in == '+' || in == '-' || in == '*' ||in == '/')
@@ -100,17 +110,27 @@ void tokeniser(string in)
 {
     queue <Token> tokenList;
     Token newToken;
+    string buf = "";
 
     int i = 0, size = in.length();
     while (i < size)
     {
-        newToken.contents = in[i];
-        curr = in[i];
-        i++;
+        cout << "stuck here" << endl;
+        if (isNumber(curr))
+        {
+            break;
+            while (isNumber(curr))
+            {
+                buf += curr;
+                i++;
+            }
+        newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_NUMBER);
+        newToken.contents = buf;
         tokenList.push(newToken);
+        }
     }
 
-
+    tokenList.push(newToken);
     cout<< "token list contains:" << endl;
     while (!tokenList.empty())
     {
