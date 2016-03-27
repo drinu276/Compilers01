@@ -21,7 +21,7 @@ public:
     };
 
     TOK_TYPE TokenType;
-    string name;
+    string contents;
     int id;
 
 
@@ -104,7 +104,7 @@ void tokeniser(string in)
     int i = 0, size = in.length();
     while (i < size)
     {
-        newToken.name = in[i];
+        newToken.contents = in[i];
         curr = in[i];
         i++;
         tokenList.push(newToken);
@@ -114,7 +114,7 @@ void tokeniser(string in)
     cout<< "token list contains:" << endl;
     while (!tokenList.empty())
     {
-        std::cout << "" << tokenList.front().name; //note: accesses first element... apparently
+        std::cout << "" << tokenList.front().contents; //note: accesses first element... apparently
         tokenList.pop(); //note: removes first element...
     }
 }
