@@ -2,6 +2,7 @@
 #include <fstream>
 #include <queue>
 #include "Lexer.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -115,18 +116,22 @@ void tokeniser(string in)
     int i = 0, size = in.length();
     while (i < size)
     {
-        cout << "stuck here" << endl;
+        curr = in[i];
+        usleep(10000);
         if (isNumber(curr))
         {
-            break;
             while (isNumber(curr))
             {
                 buf += curr;
                 i++;
+                curr = in[i];
             }
         newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_NUMBER);
         newToken.contents = buf;
         tokenList.push(newToken);
+        buf = "";
+        } else {
+            i++;
         }
     }
 
@@ -134,7 +139,7 @@ void tokeniser(string in)
     cout<< "token list contains:" << endl;
     while (!tokenList.empty())
     {
-        std::cout << "" << tokenList.front().contents; //note: accesses first element... apparently
+        std::cout << "[" << tokenList.front().contents << "] size: " << tokenList.size() <<endl; //note: accesses first element... apparently
         tokenList.pop(); //note: removes first element...
     }
 }
