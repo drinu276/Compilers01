@@ -5,6 +5,21 @@
 #include "Lexer.h"
 #include <unistd.h>
 
+/* ----- TOKENS ------
+TOK_LETTER = A-Za-z
+TOK_DIGIT = 0-9
+TOK_PRINTABLE = \x20-\x7E
+TOK_TYPE = 'real' | 'int' | 'bool' | 'string'
+TOK_BOOLEANLITERAL = 'true' | 'false'
+TOK_MULTIPLICATIVEOP = '*' | '/' | 'and'
+TOK_ADDITIVEOP = '+' | '-' | 'or'
+TOK_RELATIONALOP = '<' | '>' | '==' | '!=' | '<=' | '>='
+TOK_EQUALS = '='
+TOK_CURLYBRACE = { | }
+TOK_ROUNDBRACE = ( | )
+TOK_EOF
+---------------------- */
+
 using namespace std;
 
 char curr, peek;
@@ -14,30 +29,40 @@ static int id = 0;
 class Token
 {
 public:
-    enum TOK_TYPE
+    enum TOK_TYPES
     {
-    TOK_NUMBER,
-    TOK_ARITHMETIC_OP,
-    TOK_WHITESPACE,
-    TOK_COMMENT,
-    TOK_UNDEFINED,
-    TOK_EQUALS,
-    TOK_EOF
+        TOK_LETTER,
+        TOK_DIGIT,
+        TOK_PRINTABLE,
+        TOK_TYPE,
+        TOK_BOOLEANLITERAL,
+        TOK_MULTIPLICATIVEOP,
+        TOK_ADDITIVEOP,
+        TOK_RELATIONALOP,
+        TOK_EQUALS,
+        TOK_CURLYBRACE,
+        TOK_ROUNDBRACE,
+        TOK_EOF
     };
 
-    TOK_TYPE TokenType;
+    TOK_TYPES TokenType;
     string contents;
     int id;
 };
 
-enum TOK_TYPE
+enum TOK_TYPES
 {
-    TOK_NUMBER,
-    TOK_ARITHMETIC_OP,
-    TOK_WHITESPACE,
-    TOK_COMMENT,
-    TOK_UNDEFINED,
+    TOK_LETTER,
+    TOK_DIGIT,
+    TOK_PRINTABLE,
+    TOK_TYPE,
+    TOK_BOOLEANLITERAL,
+    TOK_MULTIPLICATIVEOP,
+    TOK_ADDITIVEOP,
+    TOK_RELATIONALOP,
     TOK_EQUALS,
+    TOK_CURLYBRACE,
+    TOK_ROUNDBRACE,
     TOK_EOF
 };
 
@@ -73,14 +98,15 @@ bool isNumber(char in)
         return false;
 }
 
-bool isPrintable (char in) {
+bool isPrintable (char in)
+{
     if (in >= '\x20' && in <= '\x7E')
         return true;
     else
         return false;
 }
 
-string removeComments(string in)
+string removeSingleLineComments(string in)
 {
     char first = 0, lookahead = 0;
     int i = 0, strLen = 0, skip = 0;
@@ -130,7 +156,7 @@ void tokeniser(string in)
                 i++;
                 curr = in[i];
             }
-            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_NUMBER);
+            newToken.TokenType = static_cast<Token::TOK_TYPES>(TOK_DIGIT);
             newToken.contents = buf;
             newToken.id = id;
             tokenList.push(newToken);
@@ -141,7 +167,7 @@ void tokeniser(string in)
         {
             buf += curr;
 
-            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_ARITHMETIC_OP);
+            newToken.TokenType = static_cast<Token::TOK_TYPES>(TOK_MULTIPLICATIVEOP);
             newToken.contents = buf;
             newToken.id = id;
             tokenList.push(newToken);
@@ -153,7 +179,7 @@ void tokeniser(string in)
         {
             buf += curr;
 
-            newToken.TokenType = static_cast<Token::TOK_TYPE>(TOK_EQUALS);
+            newToken.TokenType = static_cast<Token::TOK_TYPES>(TOK_EQUALS);
             newToken.contents = buf;
             newToken.id = id;
             tokenList.push(newToken);
@@ -190,7 +216,7 @@ Lexer::Lexer(string fileName)
         }
     }
 
-    fileIn = removeComments(fileIn);
+    fileIn = removeSingleLineComments(fileIn);
     cout << fileIn << endl;
     tokeniser(fileIn);
 

@@ -1,19 +1,25 @@
 class Lexer
 {
 public:
-    enum TOK_TYPE
+    enum TOK_TYPES
     {
-        TOK_NUMBER,
-        TOK_ARITHMETIC_OP,
-        TOK_WHITESPACE,
-        TOK_COMMENT,
-        TOK_UNDEFINED,
-        TOK_EOF
+        TOK_LETTER,
+TOK_DIGIT,
+TOK_PRINTABLE,
+TOK_TYPE,
+TOK_BOOLEANLITERAL,
+TOK_MULTIPLICATIVEOP,
+TOK_ADDITIVEOP,
+TOK_RELATIONALOP,
+TOK_EQUALS,
+TOK_CURLYBRACE,
+TOK_ROUNDBRACE,
+TOK_EOF
     };
 
     struct Token
     {
-        TOK_TYPE TokenType;
+        TOK_TYPES TokenType;
         std::string name;
         int id;
     };
