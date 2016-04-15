@@ -5,10 +5,11 @@
 
 1459087905 f:\dropbox\code\github\c++\compilers01\lexer.h
 
-1459088119 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+1460699965 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
 	<iostream>
 	<fstream>
 	<queue>
+	<regex>
 	"Lexer.h"
 	<unistd.h>
 

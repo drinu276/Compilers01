@@ -1,12 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
+#include <regex>
 #include "Lexer.h"
 #include <unistd.h>
 
 using namespace std;
 
 char curr, peek;
+char* currPt;
 static int id = 0;
 
 class Token
@@ -14,34 +16,19 @@ class Token
 public:
     enum TOK_TYPE
     {
-        TOK_NUMBER,
-        TOK_ARITHMETIC_OP,
-        TOK_WHITESPACE,
-        TOK_COMMENT,
-        TOK_UNDEFINED,
-        TOK_EOF
+    TOK_NUMBER,
+    TOK_ARITHMETIC_OP,
+    TOK_WHITESPACE,
+    TOK_COMMENT,
+    TOK_UNDEFINED,
+    TOK_EQUALS,
+    TOK_EOF
     };
 
     TOK_TYPE TokenType;
     string contents;
     int id;
-
-
 };
-
-
-
-/*struct Token
-{
-    TOK_TYPE TokenType;
-    string name;
-    int id;
-} newToken;
-
-void Token(TOK_TYPE type, string tokenName, int tokenID)
-{
-
-} */
 
 enum TOK_TYPE
 {
@@ -81,6 +68,13 @@ bool isLetter(char in)
 bool isNumber(char in)
 {
     if (in >= '0' && in <= '9')
+        return true;
+    else
+        return false;
+}
+
+bool isPrintable (char in) {
+    if (in >= '\x20' && in <= '\x7E')
         return true;
     else
         return false;
@@ -199,6 +193,8 @@ Lexer::Lexer(string fileName)
     fileIn = removeComments(fileIn);
     cout << fileIn << endl;
     tokeniser(fileIn);
+
+
     myfile.close();
 
 }
