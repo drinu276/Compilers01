@@ -1,8 +1,3 @@
-//abc
-//t
-5+8=13 //this is a comment too
-//end
-//test
-//joke
-67788
-//lol
+5
+7
+8

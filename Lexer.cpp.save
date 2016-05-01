@@ -178,6 +178,7 @@ void createToken(TOK_TYPES TokType, string contents, int id)
     newToken.id = id;
     tokenList.push(newToken);
     id++;
+
 }
 
 void tokeniser(string in)
@@ -221,19 +222,22 @@ void tokeniser(string in)
         }
         else if (isArithmeticOperator(curr))
         {
+            cout << "out3" << endl;
             buf += curr;
             if (curr == '+' || curr == '*')
             {
-                cout << "buf: " << buf << endl;
-                cout << "id: " << id << endl;
+                cout << "out4" << endl;
                 createToken(TOK_ADDITIVEOP, buf, id);
+                cout << "" << endl;
             }
             else
             {
+                cout << "out5" << endl;
                 createToken(TOK_MULTIPLICATIVEOP, buf, id);
             }
             buf = "";
             i++;
+            cout << "out6" << endl;
         }
         else if (isRelationalOperator(curr))
         {

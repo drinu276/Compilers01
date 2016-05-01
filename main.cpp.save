@@ -1,11 +1,11 @@
 #include <iostream>
 #include "Lexer.h"
-#include "Parser.h"
 
 using namespace std;
 
 int main()
 {
-    Parser p;
+    Parser p
+    Lexer l("example.txt");
     return 0;
 }

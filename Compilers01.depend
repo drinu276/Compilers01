@@ -1,26 +1,34 @@
 # depslib dependency file v1.0
-1456658731 source:f:\dropbox\code\github\c++\compilers01\main.cpp
+1462100985 source:f:\dropbox\code\github\c++\compilers01\main.cpp
 	<iostream>
 	"Lexer.h"
+	"Parser.h"
 
-1460701658 f:\dropbox\code\github\c++\compilers01\lexer.h
+1462095231 f:\dropbox\code\github\c++\compilers01\lexer.h
+	"Token.h"
 
-1460701677 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+1462101292 source:f:\dropbox\code\github\c++\compilers01\lexer.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<regex>
+	"Lexer.h"
+	"Token.h"
+	<unistd.h>
+	<string.h>
+
+1461237253 source:c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.cpp
 	<iostream>
 	<fstream>
 	<queue>
 	<regex>
 	"Lexer.h"
 	<unistd.h>
+	<string.h>
 
-1458041668 source:c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.cpp
-	<iostream>
-	<fstream>
-	"Lexer.h"
+1461225411 c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.h
 
-1458040067 c:\users\andrea\dropbox\code\github\c++\compilers01\lexer.h
-
-1456655131 source:c:\users\andrea\dropbox\code\github\c++\compilers01\main.cpp
+1456658731 source:c:\users\andrea\dropbox\code\github\c++\compilers01\main.cpp
 	<iostream>
 	"Lexer.h"
 
@@ -35,8 +43,15 @@
 	<fstream>
 	"Lexer.h"
 
-1458997455 source:f:\dropbox\code\github\c++\compilers01\token.cpp
-	<iostream>
+1462086798 source:f:\dropbox\code\github\c++\compilers01\token.cpp
 
-1458999291 f:\dropbox\code\github\c++\compilers01\token.h
+1462086798 f:\dropbox\code\github\c++\compilers01\token.h
+
+1462100915 source:f:\dropbox\code\github\c++\compilers01\parser.cpp
+	<iostream>
+	"Token.h"
+	"Lexer.h"
+	"Parser.h"
+
+1462095136 f:\dropbox\code\github\c++\compilers01\parser.h
 

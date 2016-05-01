@@ -1,12 +1,9 @@
-#ifndef LEXER_H
-#define LEXER_H
+#ifndef TOKEN_H_INCLUDED
+#define TOKEN_H_INCLUDED
 
-#include "Token.h"
+class Token{
 
-class Lexer
-{
-public:
-    enum TOK_TYPES
+    public: enum TOK_TYPES
     {
         TOK_ADDITIVEOP,
         TOK_BOOL,
@@ -47,14 +44,9 @@ public:
         TOK_SEMICOLON,
         TOK_STRING
     };
-
-    bool isArithmeticOperator(char in);
-    bool isLetter(char in);
-    bool isNumber(char in);
-    //std::string removeComments(std::string in);
-    Lexer(std::string fileName);
-    void createToken(TOK_TYPES TokType, std::string contents, int id);
-    Token GetNextToken();
+    TOK_TYPES TokenType;
+    std::string contents;
+    int id;
 };
 
-#endif
+#endif // TOKEN_H_INCLUDED

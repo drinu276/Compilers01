@@ -1,0 +1,15 @@
+#include <iostream>
+#include "Token.h"
+#include "Lexer.h"
+#include "Parser.h"
+
+using namespace std;
+
+Lexer lexer("example.txt");
+Token tok;
+
+
+Parser::Parser() {
+  tok = lexer.GetNextToken();
+  c
+}

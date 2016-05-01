@@ -1,6 +1,3 @@
-#ifndef LEXER_H
-#define LEXER_H
-
 #include "Token.h"
 
 class Lexer
@@ -48,6 +45,13 @@ public:
         TOK_STRING
     };
 
+    struct Token
+    {
+        TOK_TYPES TokenType;
+        std::string name;
+        int id;
+    };
+
     bool isArithmeticOperator(char in);
     bool isLetter(char in);
     bool isNumber(char in);
@@ -56,5 +60,3 @@ public:
     void createToken(TOK_TYPES TokType, std::string contents, int id);
     Token GetNextToken();
 };
-
-#endif
